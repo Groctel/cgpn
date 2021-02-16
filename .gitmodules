@@ -1,0 +1,3 @@
+[submodule "Doxystyle"]
+	path = Doxystyle
+	url = https://github.com/ThomasLachaux/Doxystyle
