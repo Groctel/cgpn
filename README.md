@@ -12,3 +12,10 @@ It will be a long journey, but we will really enjoy it when we get there!
 
 Join [our Discord server](https://discord.gg/Ryhh3fy77p) and ask what you can do to help.
 We're still building the most basic tools, so there's not much more than a rough checklist of things to implement.
+
+Please adhere to the previously written code's style when submitting new lines.
+
+## Placeholder name?
+
+Unfortunately, yes.
+Contact us if you have a great name idea for the project!
