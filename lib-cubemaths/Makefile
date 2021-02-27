@@ -1,20 +1,15 @@
-# ==============================================================================
-# INTERNAL USE VARIABLES
-# ==============================================================================
-
 # Directories
-# ------------------------------------------------------------------------------
 
 makedir = .
 
 bin = $(makedir)/bin
 doc = $(makedir)/doc
+glb = $(makedir)/global
 src = $(makedir)/src
 tst = $(makedir)/tests
 vec = $(makedir)/vecx
 
 # Compiler options
-# ------------------------------------------------------------------------------
 
 includelist = -I$(makedir)
 cxxcommon   = -std=c++17 $(includelist)
@@ -25,23 +20,18 @@ ifdef dev
 endif
 
 # GoogleTest options --> https://github.com/google/googletest
-# ------------------------------------------------------------------------------
 
-gtest      = /usr/include/gtest/
+gtest      = /usr/include/gtest
 gtestlibs  = /usr/lib/libgtest.so
 gtestflags = -I$(gtest) $(gtestlibs)
 
-# ==============================================================================
-# RECIPES
-# ==============================================================================
-
-# Non-file-dependant recipes
-# ------------------------------------------------------------------------------
+# Phony rules
 
 .PHONY: \
 	all \
 	build \
 	clean \
+	dev \
 	directories \
 	doc \
 	full \
@@ -68,8 +58,11 @@ doc:
 full: clean directories test build
 
 test: directories $(bin)/tests
-	@$(bin)/tests
+	@$(bin)/tests --gtest_color=yes
+
+# Building rules
 
 $(bin)/tests: tests.cpp \
+		$(glb)/functions.hpp \
 		$(tst)/vec3.hpp $(vec)/vec3.tpp
 	$(CXX) $(CXXFLAGS) -o $@ $< $(gtestflags)
